@@ -1,65 +1,91 @@
-# focus-session-helper README
+# Focus Session Helper — VS Code Extension
 
-This is the README for your extension "focus-session-helper". After writing up a brief description, we recommend including the following sections.
-
-## Features
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+### Автор: Можегов Лев М3105  
+### IDE: Visual Studio Code  
+### Репозиторий: https://github.com/LevMozh/focus-session-helper
 
 ---
 
-## Working with Markdown
+## Описание проекта
 
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
+**Focus Session Helper** — это расширение для Visual Studio Code, помогающее организовывать короткие и продуктивные фокус-сессии.  
+Плагин добавляет в VS Code удобный таймер с отображением в статус-баре и возможностью быстро управлять своим рабочим временем.
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
+Расширение ориентировано на студентов, разработчиков и всех, кто использует VS Code как основную среду работы.
 
-## For more information
+---
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+# Возможности плагина
 
-**Enjoy!**
+### Запуск таймера на выбранное количество минут  
+Пользователь вводит длительность, и таймер начинает обратный отсчёт.
+
+### Отображение времени в статус-баре  
+Оставшееся время всегда видно внизу редактора.
+
+### Пауза и возобновление  
+Команда *Pause / Resume* позволяет приостановить и продолжить сессию одним нажатием.
+
+### Остановка сессии  
+В любой момент можно завершить сессию вручную.
+
+### Статистика за сегодняшний день  
+Плагин сохраняет время в `globalState` и позволяет посмотреть, сколько минут пользователь продуктивно работал сегодня.
+
+---
+
+# Принцип работы плагина
+
+Расширение создаёт менеджер сессий, который:
+
+1. Запускает внутренний таймер (`setInterval`)  
+2. Каждую секунду обновляет оставшееся время  
+3. Отображает статус в строке состояния VS Code  
+4. Сохраняет тайминг в локальное хранилище редактора  
+
+При этом файлы проекта остаются нетронутыми, а взаимодействие происходит только через команды и статус-бар.
+
+---
+
+# Архитектурные решения
+
+### **1. FocusSessionManager**  
+Отвечает за:
+- запуск таймера  
+- остановку  
+- паузу  
+- вычисление оставшегося времени  
+- обновление UI  
+
+### **2. StatsManager**  
+Хранит статистику по дням с помощью встроенного механизма `globalState`.
+
+### **3. StatusBarItem**  
+Используется для отображения текста:
+- оставшееся время  
+- состояние (идёт / пауза)  
+
+### **Почему такой подход?**
+
+- Минимальная нагрузка  
+- UI использует только статус-бар  
+- Легко расширять  
+- Полностью автономно  
+
+---
+
+# 🛠 Установка и запуск
+
+### 1. Клонировать репозиторий
+```bash
+git clone https://github.com/LevMozh/focus-session-helper.git
+```
+### 2. Установить зависимости
+```bash
+npm install
+```
+### 3. Запустить плагин
+Открыть проект в VS Code и нажать:
+`F5`
+Откроется новое окно VS Code с запущенным расширением.
+
