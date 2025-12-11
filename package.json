@@ -1,0 +1,51 @@
+{
+  "name": "focus-session-helper",
+  "displayName": "Focus Session Helper",
+  "description": "Простой таймер фокус-сессий (помодоро-лайт) для VS Code со статистикой за день.",
+  "version": "0.0.1",
+  "publisher": "your-name-or-nickname",
+  "engines": {
+    "vscode": "^1.88.0"
+  },
+  "categories": [
+    "Productivity",
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:focusSession.start",
+    "onCommand:focusSession.pauseOrResume",
+    "onCommand:focusSession.stop",
+    "onCommand:focusSession.showStats"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "focusSession.start",
+        "title": "Focus Session: Start"
+      },
+      {
+        "command": "focusSession.pauseOrResume",
+        "title": "Focus Session: Pause / Resume"
+      },
+      {
+        "command": "focusSession.stop",
+        "title": "Focus Session: Stop"
+      },
+      {
+        "command": "focusSession.showStats",
+        "title": "Focus Session: Show Today Stats"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "echo \"No lint configured\"",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/node": ">=16",
+    "@types/vscode": "^1.88.0",
+    "jsdoc": "^4.0.5",
+    "typescript": "^5.0.0"
+  }
+}
